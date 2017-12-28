@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<!-- How characters are defined -->
+	<meta name="description" content="A Ceaser Cipher">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/stylesheet.css">
+ 	<script type="text/javascript">
+ 		
+
+function convertToCipher(str, method) { 
+  var cipherText = [];
+  var strToUpper = str.toUpperCase();
+  var strSplit = strToUpper.split('');
+  var curLetter;
+  var backToStart;
+  var encryptOrDecrypt = method;
+  document.getElementById("original_text").value = "";
+	
+for (var i=0; i<str.length; i++)
+ 
+    {
+       curLetter = strSplit[i].charCodeAt(0);
+      
+      if(curLetter > 64 && curLetter < 91 && encryptOrDecrypt === 'cipher') 
+        {
+          
+           cipherText[i] = String.fromCharCode(curLetter + 13);
+          
+          if(cipherText[i].charCodeAt(0) > 90)
+            {
+                cipherText[i] = String.fromCharCode(cipherText[i].charCodeAt(0) - 26);
+            }
+        }
+    
+
+        else if(curLetter > 64 && curLetter < 91 && encryptOrDecrypt === 'decipher')
+        {
+        	cipherText[i] = String.fromCharCode(curLetter - 13);	
+        	if(cipherText[i].charCodeAt(0) < 65)
+            {
+                cipherText[i] = String.fromCharCode(cipherText[i].charCodeAt(0) + 26);
+            }	
+        }
+
+
+
+      else
+        {
+           cipherText[i] = String.fromCharCode(curLetter);
+        }
+    }
+  
+   		var returnText = cipherText.join("");
+   	
+		document.getElementById("original_text").value = returnText;
+		
+}
+
+
+
+ 	</script>
+	<title>Caeser Cipher</title>
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+		<div class="input_area">
+		<h1>A Caeser Cipher</h1>
+		<br/>
+		<p>Enter your text to encrypt, or enter your ciphered text to decrypt and discover the message...</p> 
+		<br/>
+		<form>
+			<p><input type="text" id="original_text" name="original_text" class="original_text"></p>
+			<p>
+			<br/>
+			<button type="button" class="btn btn-primary btn-lg" onclick="convertToCipher(this.form.original_text.value, 'cipher');">Cipher</button>
+			<button type="button" class="btn btn-primary btn-lg" onclick="convertToCipher(this.form.original_text.value, 'decipher');">Decipher</button>
+
+			</p>
+		</form>
+		<br>
+			
+			</div>
+		<div>
+	</div>
+
+</div>
+	
+
+
+
+</body>
+
+
+
+
+</html>
+
+
+
+
